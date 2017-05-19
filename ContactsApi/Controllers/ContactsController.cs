@@ -23,7 +23,7 @@ namespace ContactsApi.Controllers
         }
 
         [HttpGet("{id}", Name = "GetContacts")]
-        public IActionResult GetById(string id)
+        public IActionResult GetById(long id)
         {
             var item = ContactsRepo.Find(id);
             if (item == null)
@@ -45,7 +45,7 @@ namespace ContactsApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(string id, [FromBody] Contacts item)
+        public IActionResult Update(long id, [FromBody] Contacts item)
         {
             if (item == null)
             {

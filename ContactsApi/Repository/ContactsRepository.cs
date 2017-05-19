@@ -22,11 +22,13 @@ namespace ContactsApi.Repository
             _context.SaveChanges();
         }
 
-        public Contacts Find(string key)
+        public Contacts Find(long key)
         {
-            return ContactsList
-                .Where(e => e.MobilePhone.Equals(key))
-                .SingleOrDefault();
+            return _context.Contacts.Find(key);
+
+            //return ContactsList
+            //    .Where(e => e.MobilePhone.Equals(key))
+            //    .SingleOrDefault();
         }
 
         public IEnumerable<Contacts> GetAll()

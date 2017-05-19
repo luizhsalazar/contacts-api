@@ -7,7 +7,7 @@ namespace ContactsApi.Repository
     {
         void Add(Contacts item);
         IEnumerable<Contacts> GetAll();
-        Contacts Find(string key);
+        Contacts Find(long key);
         void Remove(string Id);
         void Update(Contacts item);
     }
