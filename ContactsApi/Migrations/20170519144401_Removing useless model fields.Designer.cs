@@ -8,9 +8,10 @@ using ContactsApi.Contexts;
 namespace ContactsApi.Migrations
 {
     [DbContext(typeof(ContactsContext))]
-    partial class ContactsContextModelSnapshot : ModelSnapshot
+    [Migration("20170519144401_Removing useless model fields")]
+    partial class Removinguselessmodelfields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2")

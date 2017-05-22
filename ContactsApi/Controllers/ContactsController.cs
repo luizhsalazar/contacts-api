@@ -61,9 +61,10 @@ namespace ContactsApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        public void Delete(string id)
+        public IActionResult Delete(long id)
         {
             ContactsRepo.Remove(id);
+            return Json(new { message = "Contato excluído com sucesso!"});
         }
     }
 }

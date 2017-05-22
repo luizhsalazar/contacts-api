@@ -25,10 +25,6 @@ namespace ContactsApi.Repository
         public Contacts Find(long key)
         {
             return _context.Contacts.Find(key);
-
-            //return ContactsList
-            //    .Where(e => e.MobilePhone.Equals(key))
-            //    .SingleOrDefault();
         }
 
         public IEnumerable<Contacts> GetAll()
@@ -36,11 +32,14 @@ namespace ContactsApi.Repository
             return _context.Contacts.ToList();
         }
 
-        public void Remove(string Id)
+        public void Remove(long Id)
         {
-            var itemToRemove = ContactsList.SingleOrDefault(r => r.MobilePhone == Id);
+            var itemToRemove = this.Find(Id);
             if (itemToRemove != null)
-                ContactsList.Remove(itemToRemove);
+            {
+                _context.Contacts.Remove(itemToRemove);
+                _context.SaveChanges();
+            }
         }
 
         public void Update(Contacts item)
@@ -50,13 +49,11 @@ namespace ContactsApi.Repository
             {
                 itemToUpdate.FirstName = item.FirstName;
                 itemToUpdate.LastName = item.LastName;
-                itemToUpdate.IsFamilyMember = item.IsFamilyMember;
                 itemToUpdate.Company = item.Company;
                 itemToUpdate.JobTitle = item.JobTitle;
                 itemToUpdate.Email = item.Email;
                 itemToUpdate.MobilePhone = item.MobilePhone;
                 itemToUpdate.DateOfBirth = item.DateOfBirth;
-                itemToUpdate.AnniversaryDate = item.AnniversaryDate;
             }
         }
     }
