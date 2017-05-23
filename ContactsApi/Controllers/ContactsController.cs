@@ -41,7 +41,7 @@ namespace ContactsApi.Controllers
                 return BadRequest();
             }
             ContactsRepo.Add(item);
-            return CreatedAtRoute("GetContacts", new { Controller = "Contacts", id = item.MobilePhone }, item);
+            return Json(new { message = "Contato adicionado com sucesso!" });
         }
 
         [HttpPut("{id}")]
@@ -56,8 +56,17 @@ namespace ContactsApi.Controllers
             {
                 return NotFound();
             }
-            ContactsRepo.Update(item);
-            return new NoContentResult();
+
+            contactObj.FirstName = item.FirstName;
+            contactObj.LastName = item.LastName;
+            contactObj.Company = item.Company;
+            contactObj.JobTitle = item.JobTitle;
+            contactObj.Email = item.Email;
+            contactObj.MobilePhone = item.MobilePhone;
+            contactObj.DateOfBirth = item.DateOfBirth;
+
+            ContactsRepo.Update(contactObj);
+            return Json(new { message = "Contato atualizado com sucesso!" });            
         }
 
         [HttpDelete("{id}")]

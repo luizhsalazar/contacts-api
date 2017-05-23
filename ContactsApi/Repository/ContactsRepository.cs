@@ -44,17 +44,8 @@ namespace ContactsApi.Repository
 
         public void Update(Contacts item)
         {
-            var itemToUpdate = ContactsList.SingleOrDefault(r => r.MobilePhone == item.MobilePhone);
-            if (itemToUpdate != null)
-            {
-                itemToUpdate.FirstName = item.FirstName;
-                itemToUpdate.LastName = item.LastName;
-                itemToUpdate.Company = item.Company;
-                itemToUpdate.JobTitle = item.JobTitle;
-                itemToUpdate.Email = item.Email;
-                itemToUpdate.MobilePhone = item.MobilePhone;
-                itemToUpdate.DateOfBirth = item.DateOfBirth;
-            }
+            _context.Contacts.Update(item);
+            _context.SaveChanges();
         }
     }
 }
